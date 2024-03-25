@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+void insertionSort(double arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        double key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] < key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    double arr[10];
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Enter 10 elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf_s("%lf", &arr[i]);
+    }
+
+    insertionSort(arr, n);
+
+    printf("Sorted array in descending order:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

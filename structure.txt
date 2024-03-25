@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+typedef struct {
+    int item_id;
+    char item_name[50];
+    int qoh;
+    float rate;
+} ITEM;
+
+int main() {
+    ITEM item1, item2;
+
+    printf("Enter details for item 1:\n");
+    printf("Item ID: ");
+    scanf_s("%d", &item1.item_id);
+    printf("Item Name: ");
+    getchar(); 
+    fgets(item1.item_name, sizeof(item1.item_name), stdin);
+    printf("Quantity on hand: ");
+    scanf_s("%d", &item1.qoh);
+    printf("Rate: ");
+    scanf_s("%f", &item1.rate);
+
+    printf("\nEnter details for item 2:\n");
+    printf("Item ID: ");
+    scanf_s("%d", &item2.item_id);
+    printf("Item Name: ");
+    getchar(); 
+    fgets(item2.item_name, sizeof(item2.item_name), stdin);
+    printf("Quantity on hand: ");
+    scanf_s("%d", &item2.qoh);
+    printf("Rate: ");
+    scanf_s("%f", &item2.rate);
+
+    printf("\nDetails of item 1:\n");
+    printf("Item ID: %d\n", item1.item_id);
+    printf("Item Name: %s\n", item1.item_name);
+    printf("Quantity on hand: %d\n", item1.qoh);
+    printf("Rate: %.2f\n", item1.rate);
+
+    printf("\nDetails of item 2:\n");
+    printf("Item ID: %d\n", item2.item_id);
+    printf("Item Name: %s\n", item2.item_name);
+    printf("Quantity on hand: %d\n", item2.qoh);
+    printf("Rate: %.2f\n", item2.rate);
+
+    return 0;
+}

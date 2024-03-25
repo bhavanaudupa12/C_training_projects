@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+
+    int qoh[5][3][3] = {
+        { {10, 12, 5}, {8, 10, 3}, {5, 6, 8} },
+        { {7, 8, 10}, {12, 10, 15}, {2, 5, 8} },
+        { {5, 6, 7}, {5, 8, 9}, {7, 10, 12} },
+        { {10, 12, 5}, {8, 10, 3}, {5, 6, 8} },
+        { {7, 8, 10}, {12, 10, 15}, {2, 5, 8} }
+    };
+
+
+    printf("Total QOH for each item in each city:\n");
+    for (int city = 0; city < 3; city++) {
+        printf("City %d:\n", city + 1);
+        for (int item = 0; item < 3; item++) {
+            int totalQOH = 0;
+            for (int store = 0; store < 5; store++) {
+                totalQOH += qoh[store][city][item];
+            }
+            printf(" Item %d: %d\n", item + 1, totalQOH);
+        }
+        printf("\n");
+    }
+
+
+    printf("Total QOH for each item across all stores and cities:\n");
+    for (int item = 0; item < 3; item++) {
+        int totalQOH = 0;
+        for (int store = 0; store < 5; store++) {
+            for (int city = 0; city < 3; city++) {
+                totalQOH += qoh[store][city][item];
+            }
+        }
+        printf("Item %d: %d\n", item + 1, totalQOH);
+    }
+
+    return 0;
+}

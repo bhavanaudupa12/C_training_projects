@@ -1,0 +1,41 @@
+#include<stdio.h>
+
+int main()
+{
+	int n;
+	printf("enter the size of the array:");
+	scanf_s(" %d", &n);
+
+	double arr[100];
+
+	printf("enter %d elements:\n", n);
+	for (int i = 0; i < n; i++)
+	{
+		printf("element %d: ", i + 1);
+		scanf_s("%1f", &arr[i]);
+	}
+
+
+	double largest = arr[0];
+	double smallest = arr[0];
+
+
+	for (int i = 1; i < n; i++)
+	{
+		if (arr[i] > largest)
+
+			largest = arr[i];
+	}
+	if (arr[i] < smallest)
+	{
+		smallest = arr[i];
+	}
+}
+
+printf("largest element:%.21lf\n", largest);
+printf("smallest element:%.21lf\n", smallest);
+
+return 0;
+
+}
+

@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int compareString(char* str1, char* str2) {
+    while (*str1 == *str2) {
+        if (*str1 == '\0') 
+            return 0;
+        str1++;
+        str2++;
+    }
+
+    if (*str1 > *str2)
+        return 1;
+    else
+        return -1;
+}
+
+int main() {
+    char str1[] = "apple";
+    char str2[] = "banana";
+
+    int result = compareString(str1, str2);
+
+    printf("%d\n", result);
+
+    return 0;
+}

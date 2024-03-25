@@ -1,0 +1,10 @@
+
+#include <iostream>
+
+int main()
+{
+    printf("name: ********");
+    printf("city: ********");
+    printf("pin-code: *******");
+}
+

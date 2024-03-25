@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct ItemNode {
+    int item_id;
+    char name[100];
+    int qoh;
+    double rate;
+    struct ItemNode* pNext;
+} ITEMNODE;
+
+ITEMNODE* item_root = NULL;
+
+void insertInList(int id, char* name, int qoh, double rate, int code) {
+    ITEMNODE* iPtr = item_root;
+    while (iPtr != NULL) {
+        if (iPtr->item_id == code) {
+            break;
+        }
+        iPtr = iPtr->pNext;
+    }
+
+    if (iPtr == NULL) {
+        return;
+    }
+
+    ITEMNODE* nodePtr = (ITEMNODE*)malloc(sizeof(ITEMNODE));
+    if (nodePtr == NULL) {
+        return;
+    }
+
+    nodePtr->item_id = id;
+    strcpy_s(nodePtr->name, name);
+    nodePtr->qoh = qoh;
+    nodePtr->rate = rate;
+    nodePtr->pNext = NULL;
+
+    nodePtr->pNext = iPtr->pNext;
+    iPtr->pNext = nodePtr;
+}
+
+void printList() {
+    ITEMNODE* current = item_root;
+    while (current != NULL) {
+        printf("Item ID: %d, Name: %s, QOH: %d, Rate: %.2f\n", current->item_id, current->name, current->qoh, current->rate);
+        current = current->pNext;
+    }
+}
+
+void freeList() {
+    ITEMNODE* current = item_root;
+    ITEMNODE* temp;
+    while (current != NULL) {
+        temp = current;
+        current = current->pNext;
+        free(temp);
+    }
+}
+
+int main() {
+    char itemName[] = "Item1"; 
+    insertInList(1, itemName, 10, 5.99, 0); 
+
+    char itemName2[] = "Item2";
+    insertInList(2, itemName2, 20, 9.99, 0); 
+
+    char itemName3[] = "Item3"; 
+    insertInList(3, itemName3, 15, 7.49, 1); 
+
+    printf("List after insertion:\n");
+    printList();
+
+    freeList();
+
+    return 0;
+}

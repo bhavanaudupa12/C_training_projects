@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct item_rec {
+    int item_id;
+    char item_name[31];
+    int qoh;
+    float rate;
+} ITEM;
+
+int main() {
+    ITEM items[5] = {
+        {1, "Shirts", 10, 1.11},
+        {2, "Pants", 20, 2.22},
+        {3, "Dress", 30, 3.33},
+        {4, "Jackets", 40, 4.44},
+        {5, "Caps", 50, 5.55}
+    };
+
+    int i, itemId, sellQty;
+    char choice;
+
+    do {
+        printf("\nEnter Item ID: ");
+        scanf_s("%d", &itemId);
+
+        int found = 0;
+        for (i = 0; i < 5; i++) {
+            if (items[i].item_id == itemId) {
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) {
+            printf("Error: Item ID not found. Please try again.\n");
+            continue;
+        }
+
+        printf("Input Sell Qty: ");
+        scanf_s("%d", &sellQty);
+
+        if (sellQty > items[i].qoh) {
+            printf("Error: Cannot sell more than Quantity on Hand (QOH).\n");
+            printf("Current QOH for item %d (%s) is %d.\n", items[i].item_id, items[i].item_name, items[i].qoh);
+            continue;
+        }
+
+        float totalCost = sellQty * items[i].rate;
+        items[i].qoh -= sellQty;
+
+        printf("\nItem ID: %d\n", items[i].item_id);
+        printf("Sell Qty: %d\n", sellQty);
+        printf("QOH: %d\n", items[i].qoh);
+        printf("Rate: %.2f\n", items[i].rate);
+        printf("Total Cost: %.2f\n", totalCost);
+
+        printf("\nDo you want to continue (Y/N): ");
+        scanf_s(" %c", &choice);
+
+    } while (choice == 'Y' || choice == 'y');
+
+    printf("\nItem ID\tItem Name\tQOH\tRate\n");
+    for (i = 0; i < 5; i++) {
+        printf("%d\t%s\t\t%d\t%.2f\n", items[i].item_id, items[i].item_name, items[i].qoh, items[i].rate);
+    }
+
+    return 0;
+}
